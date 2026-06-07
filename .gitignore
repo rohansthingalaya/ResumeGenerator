@@ -1,0 +1,19 @@
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+frontend/dist/
+frontend/.env
+backend/.env
+data/cv-data.json
+.DS_Store
+*.log
+
+# Generated test output
+backend/scripts/output/
+
+# Personal CV files — not part of the codebase
+Lebenslauf_*.pdf
+CV_results/
+
+# Claude Code session data
+.claude/

@@ -1,0 +1,20 @@
+{
+  "name": "cv-generator-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.102.0",
+    "cors": "^2.8.5",
+    "docx": "^9.5.1",
+    "dotenv": "^17.4.2",
+    "express": "^4.21.2",
+    "mammoth": "^1.11.0",
+    "multer": "^2.1.1",
+    "pdf-parse": "^2.4.5",
+    "puppeteer": "^23.11.1"
+  }
+}
