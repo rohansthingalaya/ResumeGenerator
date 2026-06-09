@@ -1,0 +1,14 @@
+node_modules
+frontend/node_modules
+backend/node_modules
+frontend/dist
+frontend/.env
+backend/.env
+data/
+CV_results/
+Lebenslauf_*.pdf
+.claude/
+.git/
+*.log
+backend/scripts/output/
+.DS_Store

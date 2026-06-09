@@ -143,6 +143,15 @@ npm run build
 
 # Test DOCX/PDF generation
 npm run export:test
+
+# Docker — build and run (app available at http://localhost:3001)
+docker compose up --build
+
+# Docker — run in background
+docker compose up --build -d
+
+# Docker — stop
+docker compose down
 ```
 
 ---
@@ -225,6 +234,7 @@ npm run export:test
 | 2026-03-03 | Added `personal.headline` field | Reference PDF analysis revealed a subtitle line (e.g. "Senior Software Engineer • Solution Architect") below the name. Added as a separate field to the store and PersonalInfo form. |
 | 2026-03-11 | Skills changed from 4-column table to category-grouped lines | The bordered 4-column table was replaced with "**Category:** item1, item2, …" lines across all 5 HTML preview templates and all 5 DOCX generators. More ATS-friendly (no tables) and preserves category grouping. `LEVEL_LABELS` export added to `base-generator.js` and `templateHelpers.js` as the shared label map. |
 | 2026-06-07 | Feature-branch Git workflow adopted | All changes go on `dev` (or a short-lived `feature/` branch off `dev`), then merged to `main` when ready. Keeps `main` always releasable. |
+| 2026-06-09 | Docker: single container, multi-stage build | Stage 1 (node:20-alpine) builds the Vite frontend. Stage 2 (node:20-slim) installs LibreOffice + Puppeteer system libs, runs Express which serves both the built frontend (static) and all `/api` routes. One port (3001) exposed. `data/` mounted as a named volume for persistence. CORS disabled in production (same-origin). |
 | 2026-03-03 | Date format MM.YYYY dot notation | Reference CV uses German dot-notation dates (09.2019) and "since MM.YYYY" for current roles. `formatClassicDate()` helper handles this; other templates use MM.YYYY – MM.YYYY range format. |
 | 2026-03-03 | Entry structure: multi-line, no right-aligned dates | Reference CV puts dates on a separate italic line below company name (not right-aligned). Updated all DOCX generators and HTML preview renderer accordingly. |
 | 2026-03-05 | Photo stored as base64 data URL in `personal.photoPath` | No separate upload endpoint or file system needed. FileReader converts the picked image to a data URL stored directly in Zustand/cv-data.json. Works for both HTML preview (`<img src>`) and DOCX export (`ImageRun` with Buffer). Keeps the app fully self-contained. |
@@ -282,3 +292,4 @@ npm run export:test
 | 2026-03-11 | Skills section reformatted: 4-column bordered table → category-grouped lines ("Category: item1, item2, …") in all 5 HTML previews and all 5 DOCX templates |
 | 2026-03-11 | Language level dropdown changed to CEFR codes (A1–C2 + Native); stored value is now the CEFR code; `LEVEL_LABELS` shared map added to `templateHelpers.js` and `base-generator.js`; `CEFR_MAP` removed |
 | 2026-06-07 | Project published to GitHub — initialized git repo, created initial commit (66 files); `.gitignore` extended to exclude personal PDF (`Lebenslauf_*.pdf`), `CV_results/`, `backend/scripts/output/`, and `.claude/`; adopted feature-branch workflow: all changes go on `dev` (or a short-lived feature branch), then merged to `main` |
+| 2026-06-09 | Dockerized app — added `Dockerfile` (multi-stage), `.dockerignore`, `docker-compose.yml`; updated `server.js` to serve built frontend statically and handle SPA routing in production; CORS now skipped when `NODE_ENV=production` |
