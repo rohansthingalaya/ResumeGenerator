@@ -4,7 +4,7 @@ import { analyzeJobDescription, optimizeCv } from '../services/keywordEngine.js'
 
 export const router = Router()
 
-const client = new Anthropic() // reads ANTHROPIC_API_KEY from env
+const client = new Anthropic() // reads ANTHROPIC_API_KEY from environment
 
 router.post('/analyze-jd', (req, res) => {
   try {
