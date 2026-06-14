@@ -17,7 +17,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 /**
  * Convert a DOCX buffer to PDF using LibreOffice headless.
- * Returns a PDF buffer.
+ * Returns a PDF buffer..
  */
 export async function docxToPdfLibreOffice(docxBuffer) {
   const id = randomUUID()
